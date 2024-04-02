@@ -1,0 +1,10 @@
+#cards-count {
+  font-size: 2em;
+}
+
+.counter-container {
+  display: flex;
+}
+.hide {
+  display: none;
+}
