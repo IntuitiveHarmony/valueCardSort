@@ -1,10 +1,178 @@
-#cards-count {
-  font-size: 2em;
-}
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* End reset */
+body {
+  font-family: verdana;
+  padding: 0.5em;
+}
+h1 {
+  font-weight: bold;
+}
+button {
+  width: 47%;
+  height: 2.8em;
+  margin: 0.3em;
+}
+#skip-button {
+  margin-top: 1em;
+  width: 97%;
+}
+.hidden {
+  display: none;
+}
 .counter-container {
   display: flex;
 }
-.hide {
-  display: none;
+.card-container {
+  margin-bottom: 2em;
+}
+.card {
+  max-width: 20em;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(191, 225, 255);
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+#card-header {
+  font-size: 1.8em;
+  align-self: center;
+  margin-bottom: 0.3em;
+}
+#card-description {
+  margin-bottom: 0.3em;
+  height: 3em;
+}
+.choice-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  /* width: 75%; */
 }

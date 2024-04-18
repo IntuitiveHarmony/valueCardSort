@@ -11,19 +11,35 @@
 </head>
 
 <body>
-  <div class="dashboard">
-    <div class="counter-container">
-      <h3 id="counter-header">Cards Remaining:</h3>
-      <p id="cards-count"></p>
+  <div class="content-container">
+    <div class="instructions-container">
+      <h1>Values Card Sort</h1>
+      <p id="instructions-content">Sort each of the cards based on how important each of them are to you.</p>
     </div>
-    <div class="buttons-container">
-      <button id="start">Start</button>
-      <button id="reset" class="hide">Reset</button>
-      <button id="start"></button>
+    <div class="dashboard">
+      <div class="counter-container hidden">
+        <p>Cards Remaining: <span id="cards-count"></span></p>
+      </div>
+      <div class="buttons-container">
+        <button id="start-button">Start</button>
+        <button id="reset-button" class="hidden">Reset</button>
+      </div>
+    </div>
+    <div class="card-container hidden">
+      <div class="card">
+        <h2 id="card-header"></h2>
+        <p id="card-description"></p>
+        <div class="choice-buttons-container">
+          <button class="important-button-class" id="important-button">Important</button>
+          <button class="important-button-class" id="very-important-button">Very Important</button>
+          <button class="important-button-class" id="not-important-button">Not Important</button>
+          <button class="important-button-class" id="somewhat-important-button">Somewhat Important</button>
+        </div>
+        <button id="skip-button">Skip for Now</button>
+      </div>
     </div>
   </div>
-
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 
 </html>
