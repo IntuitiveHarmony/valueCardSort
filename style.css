@@ -140,12 +140,26 @@ button {
   height: 2.8em;
   margin: 0.3em;
 }
+ul {
+  list-style-type: square;
+  margin: 1em;
+  margin-top: 0.3em;
+}
+li {
+  width: fit-content;
+  display: block;
+  cursor: pointer;
+}
 #skip-button {
   margin-top: 1em;
   width: 97%;
 }
 .hidden {
   display: none;
+}
+.highlight-text {
+  text-decoration: underline;
+  color: rgb(16, 97, 228);
 }
 .counter-container {
   display: flex;

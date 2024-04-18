@@ -10,7 +10,10 @@ let notImportantCards = [];
 let somewhatImportantCards = [];
 let importantCards = [];
 let veryImportantCards = [];
-let skippedCards = [];
+let notImportantCardsInDOM = 0;
+let importantCardsInDOM = 0;
+let somewhatImportantCardsInDOM = 0;
+let veryImportantCardsInDOM = 0;
 
 // ~~~~~~~~~~~~
 // DOM Elements
@@ -29,6 +32,17 @@ const veryImportantButtonElement = $("#very-important-button");
 const notImportantButtonElement = $("#not-important-button");
 const somewhatImportantButtonElement = $("#somewhat-important-button");
 const skipButtonElement = $("#skip-button");
+// List Stuff
+const notImportantListContainerElement = $(".not-important-card-container");
+const veryImportantListContainerElement = $(".very-important-card-container");
+const somewhatImportantListContainerElement = $(
+  ".somewhat-important-card-container"
+);
+const importantListContainerElement = $(".important-card-container");
+const veryImportantListElement = $(".very-important-card-list");
+const notImportantListElement = $(".not-important-card-list");
+const somewhatImportantListElement = $(".somewhat-important-card-list");
+const importantListElement = $(".important-card-list");
 
 // ~~~~~~~~~
 // Functions
@@ -59,29 +73,77 @@ const displayCard = () => {
   }
   updateCardsRemainingDOM();
 };
+const sortCard = (card) => {
+  console.log(card);
+  let newLi = $(
+    `<li>${card.value} <i class="fa-regular fa-pen-to-square hidden"></i></li>`
+  );
+  // Hover Will show the Edit icon
+  newLi.hover(
+    // Function to execute when mouse enters the newLi element
+    function () {
+      // Show the <i> element when hovered over
+      $(this).addClass("highlight-text");
+      $(this).find("i").removeClass("hidden");
+    },
+    // Function to execute when mouse leaves the newLi element
+    function () {
+      // Hide the <i> element when mouse leaves
+      $(this).removeClass("highlight-text");
+      $(this).find("i").addClass("hidden");
+    }
+  );
+  // Check to see if the amount of cards in the array is has changed and update that list in DOM if so
+  if (importantCards.length != importantCardsInDOM) {
+    // Show list if above 0
+    if (importantCards.length > 0) {
+      importantListContainerElement.removeClass("hidden");
+    }
+    importantListElement.append(newLi); // Add new list item
+    importantCardsInDOM = importantCards.length; // update the flag
+  }
+  if (veryImportantCards.length != veryImportantCardsInDOM) {
+    if (veryImportantCards.length > 0) {
+      veryImportantListContainerElement.removeClass("hidden");
+    }
+    veryImportantListElement.append(newLi); // Add new list item
+    veryImportantCardsInDOM = veryImportantCards.length; // update the flag
+  }
+  if (somewhatImportantCards.length != somewhatImportantCardsInDOM) {
+    if (somewhatImportantCards.length > 0) {
+      somewhatImportantListContainerElement.removeClass("hidden");
+    }
+    somewhatImportantListElement.append(newLi); // Add new list item
+    somewhatImportantCardsInDOM = somewhatImportantCards.length; // update the flag
+  }
+  if (notImportantCards.length != notImportantCardsInDOM) {
+    if (notImportantCards.length > 0) {
+      notImportantListContainerElement.removeClass("hidden");
+    }
+    notImportantListElement.append(newLi); // Add new list item
+    notImportantCardsInDOM = notImportantCards.length; // update the flag
+  }
+};
 function handleEveryImportantButton() {
   let button = $(this).attr("id"); // get which button was pressed
   let currentCard = shuffledCards.splice(currentIndex, 1)[0]; // Remove the current card from cards deck
   // Sort the card based on which button was pressed
   if (button === "important-button") {
     importantCards.push(currentCard);
-    console.log("Important button pressed");
   } else if (button === "very-important-button") {
     veryImportantCards.push(currentCard);
-    console.log("Very Important button pressed");
   } else if (button === "somewhat-important-button") {
     somewhatImportantCards.push(currentCard);
-    console.log("Somewhat Important button pressed");
   } else if (button === "not-important-button") {
     notImportantCards.push(currentCard);
-    console.log("Not Important button pressed");
   }
-  console.log("Shuffled array: ", shuffledCards);
-  console.log("Important array: ", importantCards);
-  console.log("Very Important array: ", veryImportantCards);
-  console.log("Somewhat Important array: ", somewhatImportantCards);
-  console.log("Not Important array: ", notImportantCards);
-  displayCard(); // Update card in the DOM
+  // console.log("Shuffled array: ", shuffledCards);
+  // console.log("Important array: ", importantCards);
+  // console.log("Very Important array: ", veryImportantCards);
+  // console.log("Somewhat Important array: ", somewhatImportantCards);
+  // console.log("Not Important array: ", notImportantCards);
+  displayCard(); // Update card to evaluate in the DOM
+  sortCard(currentCard); // Put the Checked card in the right DOM container
 }
 const handleSkipButton = () => {
   let skippedCard = shuffledCards.shift(); // Take the card from the front of array
