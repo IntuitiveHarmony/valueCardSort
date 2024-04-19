@@ -129,6 +129,7 @@ table {
 }
 /* End reset */
 body {
+  background-color: rgb(226, 252, 225);
   font-family: verdana;
   padding: 0.5em;
 }
@@ -141,7 +142,7 @@ button {
   border: 1px solid gray;
   border-radius: 7px;
   width: 47%;
-  height: 2.8em;
+  height: 3.7em;
   margin: 0.3em;
 }
 button:hover {
@@ -194,6 +195,22 @@ li {
   display: flex;
   flex-wrap: wrap;
   /* width: 75%; */
+}
+.sorted-container {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+.result-container {
+  width: fit-content;
+  height: fit-content;
+  max-width: 20em;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(199, 140, 199);
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 .hidden {
   display: none;
