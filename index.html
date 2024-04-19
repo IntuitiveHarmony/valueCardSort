@@ -4,11 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- icon library -->
   <script src="https://kit.fontawesome.com/0920e202c7.js" crossorigin="anonymous"></script>
-
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- local storage library -->
+  <script src="https://unpkg.com/storejs/dist/store.js"></script>
   <link rel="stylesheet" href="style.css">
-  <title>Card Sort</title>
+  <title>Values Card Sort</title>
 </head>
 
 <body>
@@ -18,15 +21,15 @@
       <p id="instructions-content">Sort each of the cards based on how important each of them are to you.</p>
     </div>
     <div class="dashboard">
-      <div class="counter-container hidden">
-        <p>Cards Remaining: <span id="cards-count"></span></p>
-      </div>
       <div class="buttons-container">
         <button id="start-button">Start</button>
         <button id="reset-button" class="hidden">Reset</button>
       </div>
     </div>
     <div class="card-container hidden">
+      <div class="counter-container">
+        <p>Cards Remaining: <span id="cards-count"></span></p>
+      </div>
       <div class="card">
         <h2 id="card-header"></h2>
         <p id="card-description"></p>

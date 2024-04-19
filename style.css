@@ -136,9 +136,16 @@ h1 {
   font-weight: bold;
 }
 button {
+  cursor: pointer;
+  background-color: rgb(217, 233, 251);
+  border: 1px solid gray;
+  border-radius: 7px;
   width: 47%;
   height: 2.8em;
   margin: 0.3em;
+}
+button:hover {
+  background-color: rgb(206, 230, 255);
 }
 ul {
   list-style-type: square;
@@ -154,15 +161,13 @@ li {
   margin-top: 1em;
   width: 97%;
 }
-.hidden {
-  display: none;
-}
 .highlight-text {
   text-decoration: underline;
   color: rgb(16, 97, 228);
 }
 .counter-container {
   display: flex;
+  margin-bottom: 1em;
 }
 .card-container {
   margin-bottom: 2em;
@@ -171,7 +176,7 @@ li {
   max-width: 20em;
   display: flex;
   flex-direction: column;
-  background-color: rgb(191, 225, 255);
+  background-color: rgb(199, 140, 199);
   padding: 1em;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -189,4 +194,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   /* width: 75%; */
+}
+.hidden {
+  display: none;
 }
