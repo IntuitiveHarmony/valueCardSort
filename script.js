@@ -19,6 +19,8 @@ const cardDescriptionElement = $("#card-description");
 const allImportantButtonElements = $(".important-button-class");
 const startButtonElement = $("#start-button");
 const resetButtonElement = $("#reset-button");
+const addButtonElement = $("#add-button");
+const cancelButtonElement = $("#cancel-button");
 const skipButtonElement = $("#skip-button");
 // List Stuff
 const notImportantListContainerElement = $(".not-important-card-container");
@@ -31,6 +33,8 @@ const veryImportantListElement = $(".very-important-card-list");
 const notImportantListElement = $(".not-important-card-list");
 const somewhatImportantListElement = $(".somewhat-important-card-list");
 const importantListElement = $(".important-card-list");
+// Modals
+const addCardModalElement = $(".add-card-modal");
 
 // ~~~~~~~~~
 // Functions
@@ -50,18 +54,20 @@ const shuffleCards = () => {
 };
 
 const handleStartButton = () => {
+  initLocalStorage();
   showCardContainer();
   displayCard();
   startButtonElement.addClass("hidden");
   resetButtonElement.removeClass("hidden");
+  addButtonElement.removeClass("hidden");
 };
 const handleResetButton = () => {
   store.clear(); // Delete local storage
-  initLocalStorage();
   hideCardContainer();
   showSortedContainers();
   startButtonElement.removeClass("hidden");
   resetButtonElement.addClass("hidden");
+  addButtonElement.addClass("hidden");
 };
 const showCardContainer = () => {
   cardContainerElement.removeClass("hidden");
@@ -71,7 +77,6 @@ const hideCardContainer = () => {
 };
 const displayCard = () => {
   let shuffledCards = store.get("shuffledCards");
-  console.log("Display card- shuffled cards: ", shuffledCards);
   if (shuffledCards.length > 0) {
     cardHeaderElement.text(shuffledCards[currentIndex].value);
     cardDescriptionElement.text(shuffledCards[currentIndex].description);
@@ -80,47 +85,34 @@ const displayCard = () => {
   }
   updateCardsRemainingDOM();
 };
-// const removeCardFromArray = (card, arrays) => {
-//   for (let i = 0; i < arrays.length; i++) {
-//     let array = arrays[i];
-//     // Skip empty arrays
-//     if (array.length === 0) continue;
-
-//     let filteredArray = [];
-//     for (let j = 0; j < array.length; j++) {
-//       if (array[j] !== card) {
-//         filteredArray.push(array[j]);
-//       }
-//     }
-
-//     if (filteredArray.length < array.length) {
-//       // Card was found and removed from this array
-//       console.log(`${card.value} removed from array:`, array);
-//       arrays[i] = filteredArray; // Update the original array
-//     } else {
-//       console.log(`${card.value} not found in any array`);
-//     }
-//   }
-// };
 
 const showSortedContainers = () => {
   // Make sure each array exists in the local storage and is greater than 0 to show or hide List in DOM
-  if (store.get("veryImportantCards").length > 0) {
+  if (
+    store.get("?veryImportantCards") &&
+    store.get("veryImportantCards").length > 0
+  ) {
     veryImportantListContainerElement.removeClass("hidden");
   } else {
     veryImportantListContainerElement.addClass("hidden");
   }
-  if (store.get("notImportantCards").length > 0) {
+  if (
+    store.get("?notImportantCards") &&
+    store.get("notImportantCards").length > 0
+  ) {
     notImportantListContainerElement.removeClass("hidden");
   } else {
     notImportantListContainerElement.addClass("hidden");
   }
-  if (store.get("somewhatImportantCards").length > 0) {
+  if (
+    store.get("?somewhatImportantCards") &&
+    store.get("somewhatImportantCards").length > 0
+  ) {
     somewhatImportantListContainerElement.removeClass("hidden");
   } else {
     somewhatImportantListContainerElement.addClass("hidden");
   }
-  if (store.get("importantCards").length > 0) {
+  if (store.get("?importantCards") && store.get("importantCards").length > 0) {
     importantListContainerElement.removeClass("hidden");
   } else {
     importantListContainerElement.addClass("hidden");
@@ -227,11 +219,20 @@ function handleEveryImportantButton() {
   }
   // Put cards back in storage
   store.set("shuffledCards", shuffledCards);
-  // logAllArrays();
   showSortedContainers();
   sortCardsInDOM(); // Put the sorted cards in the right DOM container
   displayCard(); // Update card to evaluate in the DOM
 }
+const handleAddButton = () => {
+  addCardModalElement.removeClass("hidden");
+  cardElement.addClass("hidden");
+  console.log("add card");
+};
+const handleCancelButton = () => {
+  addCardModalElement.addClass("hidden");
+  cardElement.removeClass("hidden");
+  console.log("add card");
+};
 const handleSkipButton = () => {
   let shuffledCards = store.get("shuffledCards"); // Get cards from storage
   let skippedCard = shuffledCards.shift(); // Take the card from the front of array
@@ -243,13 +244,6 @@ const updateCardsRemainingDOM = () => {
   cardsCountElement.text(`${store.get("shuffledCards").length}`);
 };
 
-// const logAllArrays = () => {
-//   console.log("Shuffled array: ", shuffledCards);
-//   console.log("Important array: ", importantCards);
-//   console.log("Very Important array: ", veryImportantCards);
-//   console.log("Somewhat Important array: ", somewhatImportantCards);
-//   console.log("Not Important array: ", notImportantCards);
-// };
 // ~~~~~~~~~~~~~~~~~~~
 // Button Click Events
 // ~~~~~~~~~~~~~~~~~~~
@@ -260,6 +254,8 @@ allImportantButtonElements.each((index, button) => {
 
 startButtonElement.click(handleStartButton);
 resetButtonElement.click(handleResetButton);
+addButtonElement.click(handleAddButton);
+cancelButtonElement.click(handleCancelButton);
 skipButtonElement.click(handleSkipButton);
 
 // Do this stuff once the DOM is done loading for the first time

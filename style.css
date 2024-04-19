@@ -136,6 +136,10 @@ body {
 h1 {
   font-weight: bold;
 }
+h2 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
 button {
   cursor: pointer;
   background-color: rgb(217, 233, 251);
@@ -158,9 +162,17 @@ li {
   display: block;
   cursor: pointer;
 }
+.content-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
 #skip-button {
   margin-top: 1em;
   width: 97%;
+}
+.add-modal-button-box {
+  display: flex;
 }
 .highlight-text {
   text-decoration: underline;
@@ -172,6 +184,18 @@ li {
 }
 .card-container {
   margin-bottom: 2em;
+}
+.add-card-modal {
+  max-width: 20em;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(199, 140, 199);
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+textarea {
+  max-width: 100%;
 }
 .card {
   max-width: 20em;

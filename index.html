@@ -24,6 +24,7 @@
       <div class="buttons-container">
         <button id="start-button">Start</button>
         <button id="reset-button" class="hidden">Reset</button>
+        <button class="hidden" id="add-button">Add New Card</button>
       </div>
     </div>
     <div class="card-container hidden">
@@ -40,6 +41,18 @@
           <button class="important-button-class" id="somewhat-important-button">Somewhat Important</button>
         </div>
         <button id="skip-button">Skip for Now</button>
+      </div>
+      <div class="add-card-modal hidden">
+        <h2>Add New Card</h2>
+        <p>Fill out the form and submit your own personal value to the deck of cards.</p>
+        <label for="add-new-name">Value:</label>
+        <input type="text" id="add-new-name">
+        <label for="add-new-description">Description:</label>
+        <textarea type="text" id="add-new-description"></textarea>
+        <div class="add-modal-button-box">
+          <button id="cancel-button">Cancel</button>
+          <button id="submit-button">Submit</button>
+        </div>
       </div>
     </div>
     <div class="sorted-container">
