@@ -71,6 +71,7 @@ const hideCardContainer = () => {
 };
 const displayCard = () => {
   let shuffledCards = store.get("shuffledCards");
+  console.log("Display card- shuffled cards: ", shuffledCards);
   if (shuffledCards.length > 0) {
     cardHeaderElement.text(shuffledCards[currentIndex].value);
     cardDescriptionElement.text(shuffledCards[currentIndex].description);
@@ -104,31 +105,22 @@ const displayCard = () => {
 
 const showSortedContainers = () => {
   // Make sure each array exists in the local storage and is greater than 0 to show or hide List in DOM
-  if (
-    store.get("?veryImportantCards") &&
-    store.get("veryImportantCards").length > 0
-  ) {
+  if (store.get("veryImportantCards").length > 0) {
     veryImportantListContainerElement.removeClass("hidden");
   } else {
     veryImportantListContainerElement.addClass("hidden");
   }
-  if (
-    store.get("?notImportantCards") &&
-    store.get("notImportantCards").length > 0
-  ) {
+  if (store.get("notImportantCards").length > 0) {
     notImportantListContainerElement.removeClass("hidden");
   } else {
     notImportantListContainerElement.addClass("hidden");
   }
-  if (
-    store.get("?somewhatImportantCards") &&
-    store.get("somewhatImportantCards").length > 0
-  ) {
+  if (store.get("somewhatImportantCards").length > 0) {
     somewhatImportantListContainerElement.removeClass("hidden");
   } else {
     somewhatImportantListContainerElement.addClass("hidden");
   }
-  if (store.get("?importantCards") && store.get("importantCards").length > 0) {
+  if (store.get("importantCards").length > 0) {
     importantListContainerElement.removeClass("hidden");
   } else {
     importantListContainerElement.addClass("hidden");
@@ -176,26 +168,34 @@ const cardsStorageLoop = (array, element, button) => {
   }
 };
 
-const sortCardsInDOM = (button) => {
+const sortCardsInDOM = () => {
   if (store.get("veryImportantCards").length > 0) {
     let veryImportantCards = store.get("veryImportantCards");
-    cardsStorageLoop(veryImportantCards, veryImportantListElement, button);
+    cardsStorageLoop(
+      veryImportantCards,
+      veryImportantListElement,
+      "veryImportantCards"
+    );
   }
   if (store.get("notImportantCards").length > 0) {
     let notImportantCards = store.get("notImportantCards");
-    cardsStorageLoop(notImportantCards, notImportantListElement, button);
+    cardsStorageLoop(
+      notImportantCards,
+      notImportantListElement,
+      "notImportantCards"
+    );
   }
   if (store.get("somewhatImportantCards").length > 0) {
     let somewhatImportantCards = store.get("somewhatImportantCards");
     cardsStorageLoop(
       somewhatImportantCards,
       somewhatImportantListElement,
-      button
+      "somewhatImportantCards"
     );
   }
   if (store.get("importantCards").length > 0) {
     let importantCards = store.get("importantCards");
-    cardsStorageLoop(importantCards, importantListElement, button);
+    cardsStorageLoop(importantCards, importantListElement, "importantCards");
   }
 };
 function handleEveryImportantButton() {
@@ -229,7 +229,7 @@ function handleEveryImportantButton() {
   store.set("shuffledCards", shuffledCards);
   // logAllArrays();
   showSortedContainers();
-  sortCardsInDOM(button); // Put the sorted cards in the right DOM container
+  sortCardsInDOM(); // Put the sorted cards in the right DOM container
   displayCard(); // Update card to evaluate in the DOM
 }
 const handleSkipButton = () => {
@@ -268,5 +268,9 @@ $(() => {
   // Check if one of the variables is in local storage. If not initialize it with data and empty arrays
   if (!store("?shuffledCards")) {
     initLocalStorage();
+  } else {
+    handleStartButton();
+    showSortedContainers();
+    sortCardsInDOM();
   }
 });
