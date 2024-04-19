@@ -6,21 +6,21 @@ import { cards } from "./cardData.js";
 let cardCount = cards.length; // Initially set to the array length but then incremented later
 let currentIndex = 0;
 // let shuffledCards;
-let notImportantCards = [];
-let somewhatImportantCards = [];
-let importantCards = [];
-let veryImportantCards = [];
-let sortedCardArrays = [
-  notImportantCards,
-  somewhatImportantCards,
-  importantCards,
-  veryImportantCards,
-];
-let notImportantCardsInDOM = 0;
-let importantCardsInDOM = 0;
-let somewhatImportantCardsInDOM = 0;
-let veryImportantCardsInDOM = 0;
-let editCard = false;
+// let notImportantCards = [];
+// let somewhatImportantCards = [];
+// let importantCards = [];
+// let veryImportantCards = [];
+// let sortedCardArrays = [
+//   notImportantCards,
+//   somewhatImportantCards,
+//   importantCards,
+//   veryImportantCards,
+// ];
+// let notImportantCardsInDOM = 0;
+// let importantCardsInDOM = 0;
+// let somewhatImportantCardsInDOM = 0;
+// let veryImportantCardsInDOM = 0;
+// let editCard = false;
 
 // ~~~~~~~~~~~~
 // DOM Elements
@@ -154,77 +154,60 @@ const showSortedContainers = () => {
     importantListContainerElement.addClass("hidden");
   }
 };
+const cardsStorageLoop = (array, element) => {
+  element.empty();
+  for (let i = 0; i < array.length; i++) {
+    let newLi = $(
+      `<li>${array[i].value} <i class="fa-regular fa-pen-to-square hidden"></i></li>`
+    );
+    // Hover Will show the Edit icon
+    newLi.hover(
+      // Function to execute when mouse enters the newLi element
+      function () {
+        // Show the <i> element when hovered over
+        $(this).addClass("highlight-text");
+        $(this).find("i").removeClass("hidden");
+      },
+      // Function to execute when mouse leaves the newLi element
+      function () {
+        // Hide the <i> element when mouse leaves
+        $(this).removeClass("highlight-text");
+        $(this).find("i").addClass("hidden");
+      }
+    );
+    element.append(newLi);
+  }
+};
 
-const sortCard = (newCard) => {
-  console.log(newCard);
-  let newLi = $(
-    `<li>${newCard.value} <i class="fa-regular fa-pen-to-square hidden"></i></li>`
-  );
-  // Hover Will show the Edit icon
-  newLi.hover(
-    // Function to execute when mouse enters the newLi element
-    function () {
-      // Show the <i> element when hovered over
-      $(this).addClass("highlight-text");
-      $(this).find("i").removeClass("hidden");
-    },
-    // Function to execute when mouse leaves the newLi element
-    function () {
-      // Hide the <i> element when mouse leaves
-      $(this).removeClass("highlight-text");
-      $(this).find("i").addClass("hidden");
-    }
-  );
-  //   // Click Event to edit
-  //   newLi.click(function () {
-  //     // Put card in beginning of deck to be sorted
-  //     shuffledCards.unshift(newCard);
-  //     console.log("Shuff lenght: ", shuffledCards.length);
-  //     displayCard();
-  //     cardElement.removeClass("hidden");
-  //     // Remove card from list that it is in
-  //     removeCardFromArray(newCard, sortedCardArrays);
-  //     $(this).remove();
-  //     logAllArrays();
-  //   });
-  //   // Check to see if the amount of cards in the array is has changed and update that list in DOM if so
-  //   if (importantCards.length != importantCardsInDOM) {
-  //     // Show list if above 0
-  //     if (importantCards.length > 0) {
-  //       importantListContainerElement.removeClass("hidden");
-  //     } else {
-  //       importantListContainerElement.addClass("hidden");
-  //     }
-  //     importantListElement.append(newLi); // Add new list item
-  //     importantCardsInDOM = importantCards.length; // update the flag
-  //   }
-  //   if (veryImportantCards.length != veryImportantCardsInDOM) {
-  //     if (veryImportantCards.length > 0) {
-  //       veryImportantListContainerElement.removeClass("hidden");
-  //     } else {
-  //       veryImportantListContainerElement.addClass("hidden");
-  //     }
-  //     veryImportantListElement.append(newLi); // Add new list item
-  //     veryImportantCardsInDOM = veryImportantCards.length; // update the flag
-  //   }
-  //   if (somewhatImportantCards.length != somewhatImportantCardsInDOM) {
-  //     if (somewhatImportantCards.length > 0) {
-  //       somewhatImportantListContainerElement.removeClass("hidden");
-  //     } else {
-  //       somewhatImportantListContainerElement.addClass("hidden");
-  //     }
-  //     somewhatImportantListElement.append(newLi); // Add new list item
-  //     somewhatImportantCardsInDOM = somewhatImportantCards.length; // update the flag
-  //   }
-  //   if (notImportantCards.length != notImportantCardsInDOM) {
-  //     if (notImportantCards.length > 0) {
-  //       notImportantListContainerElement.removeClass("hidden");
-  //     } else {
-  //       notImportantListContainerElement.addClass("hidden");
-  //     }
-  //     notImportantListElement.append(newLi); // Add new list item
-  //     notImportantCardsInDOM = notImportantCards.length; // update the flag
-  //   }
+const sortCardsInDOM = () => {
+  if (store.get("veryImportantCards").length > 0) {
+    let veryImportantCards = store.get("veryImportantCards");
+    cardsStorageLoop(veryImportantCards, veryImportantListElement);
+  }
+  if (store.get("notImportantCards").length > 0) {
+    let notImportantCards = store.get("notImportantCards");
+    cardsStorageLoop(notImportantCards, notImportantListElement);
+  }
+  if (store.get("somewhatImportantCards").length > 0) {
+    let somewhatImportantCards = store.get("somewhatImportantCards");
+    cardsStorageLoop(somewhatImportantCards, somewhatImportantListElement);
+  }
+  if (store.get("importantCards").length > 0) {
+    let importantCards = store.get("importantCards");
+    cardsStorageLoop(importantCards, importantListElement);
+  }
+  // Click Event to edit
+  // newLi.click(function () {
+  //   // Put card in beginning of deck to be sorted
+  //   shuffledCards.unshift(newCard);
+  //   console.log("Shuff lenght: ", shuffledCards.length);
+  //   displayCard();
+  //   cardElement.removeClass("hidden");
+  //   // Remove card from list that it is in
+  //   removeCardFromArray(newCard, sortedCardArrays);
+  //   $(this).remove();
+  //   logAllArrays();
+  // });
 };
 function handleEveryImportantButton() {
   // Get the cards from local storage
@@ -252,9 +235,9 @@ function handleEveryImportantButton() {
   // Put cards back in storage
   store.set("shuffledCards", shuffledCards);
   // logAllArrays();
-  displayCard(); // Update card to evaluate in the DOM
-  sortCard(currentCard); // Put the Checked card in the right DOM container
   showSortedContainers();
+  sortCardsInDOM(); // Put the sorted cards in the right DOM container
+  displayCard(); // Update card to evaluate in the DOM
 }
 const handleSkipButton = () => {
   let shuffledCards = store.get("shuffledCards"); // Get cards from storage
