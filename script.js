@@ -5,22 +5,6 @@ import { cards } from "./cardData.js";
 // ~~~~~~~~~~
 let cardCount = cards.length; // Initially set to the array length but then incremented later
 let currentIndex = 0;
-// let shuffledCards;
-// let notImportantCards = [];
-// let somewhatImportantCards = [];
-// let importantCards = [];
-// let veryImportantCards = [];
-// let sortedCardArrays = [
-//   notImportantCards,
-//   somewhatImportantCards,
-//   importantCards,
-//   veryImportantCards,
-// ];
-// let notImportantCardsInDOM = 0;
-// let importantCardsInDOM = 0;
-// let somewhatImportantCardsInDOM = 0;
-// let veryImportantCardsInDOM = 0;
-// let editCard = false;
 
 // ~~~~~~~~~~~~
 // DOM Elements
@@ -35,10 +19,6 @@ const cardDescriptionElement = $("#card-description");
 const allImportantButtonElements = $(".important-button-class");
 const startButtonElement = $("#start-button");
 const resetButtonElement = $("#reset-button");
-const importantButtonElement = $("#important-button");
-const veryImportantButtonElement = $("#very-important-button");
-const notImportantButtonElement = $("#not-important-button");
-const somewhatImportantButtonElement = $("#somewhat-important-button");
 const skipButtonElement = $("#skip-button");
 // List Stuff
 const notImportantListContainerElement = $(".not-important-card-container");
@@ -154,12 +134,13 @@ const showSortedContainers = () => {
     importantListContainerElement.addClass("hidden");
   }
 };
-const cardsStorageLoop = (array, element) => {
+const cardsStorageLoop = (array, element, button) => {
   element.empty();
   for (let i = 0; i < array.length; i++) {
     let newLi = $(
       `<li>${array[i].value} <i class="fa-regular fa-pen-to-square hidden"></i></li>`
     );
+
     // Hover Will show the Edit icon
     newLi.hover(
       // Function to execute when mouse enters the newLi element
@@ -175,39 +156,47 @@ const cardsStorageLoop = (array, element) => {
         $(this).find("i").addClass("hidden");
       }
     );
+
+    // Click Event to edit
+    newLi.click(function () {
+      let shuffledCards = store.get("shuffledCards");
+      shuffledCards.unshift(array[i]); // Put card in beginning of deck to be sorted
+      store.set("shuffledCards", shuffledCards); // Put deck back
+      displayCard(); // cardElement.removeClass("hidden"); // Remove card from list that it is in
+      array.splice(i, 1); // Remove the card from the original array
+      console.log("Array name:", button);
+      // adjust the local storage based on the edit button pressed
+      store.set(button, array); // Update the array in the store
+      $(this).remove(); // remove from DOM
+      // logAllArrays();
+      showSortedContainers();
+    });
+
     element.append(newLi);
   }
 };
 
-const sortCardsInDOM = () => {
+const sortCardsInDOM = (button) => {
   if (store.get("veryImportantCards").length > 0) {
     let veryImportantCards = store.get("veryImportantCards");
-    cardsStorageLoop(veryImportantCards, veryImportantListElement);
+    cardsStorageLoop(veryImportantCards, veryImportantListElement, button);
   }
   if (store.get("notImportantCards").length > 0) {
     let notImportantCards = store.get("notImportantCards");
-    cardsStorageLoop(notImportantCards, notImportantListElement);
+    cardsStorageLoop(notImportantCards, notImportantListElement, button);
   }
   if (store.get("somewhatImportantCards").length > 0) {
     let somewhatImportantCards = store.get("somewhatImportantCards");
-    cardsStorageLoop(somewhatImportantCards, somewhatImportantListElement);
+    cardsStorageLoop(
+      somewhatImportantCards,
+      somewhatImportantListElement,
+      button
+    );
   }
   if (store.get("importantCards").length > 0) {
     let importantCards = store.get("importantCards");
-    cardsStorageLoop(importantCards, importantListElement);
+    cardsStorageLoop(importantCards, importantListElement, button);
   }
-  // Click Event to edit
-  // newLi.click(function () {
-  //   // Put card in beginning of deck to be sorted
-  //   shuffledCards.unshift(newCard);
-  //   console.log("Shuff lenght: ", shuffledCards.length);
-  //   displayCard();
-  //   cardElement.removeClass("hidden");
-  //   // Remove card from list that it is in
-  //   removeCardFromArray(newCard, sortedCardArrays);
-  //   $(this).remove();
-  //   logAllArrays();
-  // });
 };
 function handleEveryImportantButton() {
   // Get the cards from local storage
@@ -219,24 +208,28 @@ function handleEveryImportantButton() {
     const importantCards = store.get("importantCards"); // Grab from storage
     importantCards.push(currentCard); // Update
     store.set("importantCards", importantCards); // Back in storage
+    button = "importantCards"; // Pass button string for local storage later
   } else if (button === "very-important-button") {
     const veryImportantCards = store.get("veryImportantCards"); // Grab from storage
     veryImportantCards.push(currentCard); // Update
     store.set("veryImportantCards", veryImportantCards); // Back in storage
+    button = "veryImportantCards"; // Pass button string for local storage later
   } else if (button === "somewhat-important-button") {
     const somewhatImportantCards = store.get("somewhatImportantCards"); // Grab from storage
     somewhatImportantCards.push(currentCard); // Update
     store.set("somewhatImportantCards", somewhatImportantCards); // Back in storage
+    button = "somewhatImportantCards"; // Pass button string for local storage later
   } else if (button === "not-important-button") {
     const notImportantCards = store.get("notImportantCards"); // Grab from storage
     notImportantCards.push(currentCard); // Update
     store.set("notImportantCards", notImportantCards); // Back in storage
+    button = "notImportantCards"; // Pass button string for local storage later
   }
   // Put cards back in storage
   store.set("shuffledCards", shuffledCards);
   // logAllArrays();
   showSortedContainers();
-  sortCardsInDOM(); // Put the sorted cards in the right DOM container
+  sortCardsInDOM(button); // Put the sorted cards in the right DOM container
   displayCard(); // Update card to evaluate in the DOM
 }
 const handleSkipButton = () => {
