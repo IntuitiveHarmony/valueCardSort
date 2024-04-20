@@ -20,6 +20,7 @@ const allImportantButtonElements = $(".important-button-class");
 const startButtonElement = $("#start-button");
 const resetButtonElement = $("#reset-button");
 const addButtonElement = $("#add-button");
+const submitButtonElement = $("#submit-button");
 const cancelButtonElement = $("#cancel-button");
 const skipButtonElement = $("#skip-button");
 // List Stuff
@@ -33,8 +34,11 @@ const veryImportantListElement = $(".very-important-card-list");
 const notImportantListElement = $(".not-important-card-list");
 const somewhatImportantListElement = $(".somewhat-important-card-list");
 const importantListElement = $(".important-card-list");
-// Modals
+// Add card
 const addCardModalElement = $(".add-card-modal");
+const addCardValueElement = $("#add-new-name");
+const addCardDescriptionElement = $("#add-new-description");
+const validationTextElement = $(".validation-text");
 
 // ~~~~~~~~~
 // Functions
@@ -52,7 +56,9 @@ const shuffleCards = () => {
   let shuffledCards = cards.sort(() => Math.random() - 0.5);
   store.set("shuffledCards", shuffledCards);
 };
-
+const getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
 const handleStartButton = () => {
   initLocalStorage();
   showCardContainer();
@@ -226,12 +232,33 @@ function handleEveryImportantButton() {
 const handleAddButton = () => {
   addCardModalElement.removeClass("hidden");
   cardElement.addClass("hidden");
-  console.log("add card");
 };
 const handleCancelButton = () => {
+  // reset all the add card modal settings
   addCardModalElement.addClass("hidden");
   cardElement.removeClass("hidden");
-  console.log("add card");
+  validationTextElement.addClass("hidden");
+  addCardValueElement.val("");
+  addCardDescriptionElement.val("");
+};
+const handleSubmitButton = () => {
+  // Check to make sure both fields are filled out before submitting card to local storage
+  if (addCardValueElement.val() && addCardDescriptionElement.val()) {
+    // Get card data from form fields
+    const newCard = {
+      value: addCardValueElement.val(),
+      description: addCardDescriptionElement.val(),
+    };
+    console.log(newCard);
+    const shuffledCards = store.get("shuffledCards"); // Get the deck from local storage
+    shuffledCards.splice(getRandomNumber(0, shuffledCards.length), 0, newCard); // Put new card in random spot
+    store.set("shuffledCards", shuffledCards);
+    updateCardsRemainingDOM();
+    handleCancelButton(); // Reset text Fields
+  } else {
+    validationTextElement.removeClass("hidden");
+    console.log("NO trxt");
+  }
 };
 const handleSkipButton = () => {
   let shuffledCards = store.get("shuffledCards"); // Get cards from storage
@@ -255,6 +282,7 @@ allImportantButtonElements.each((index, button) => {
 startButtonElement.click(handleStartButton);
 resetButtonElement.click(handleResetButton);
 addButtonElement.click(handleAddButton);
+submitButtonElement.click(handleSubmitButton);
 cancelButtonElement.click(handleCancelButton);
 skipButtonElement.click(handleSkipButton);
 

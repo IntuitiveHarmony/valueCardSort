@@ -220,6 +220,12 @@ textarea {
   flex-wrap: wrap;
   /* width: 75%; */
 }
+.validation-text {
+  color: rgb(0, 255, 174);
+}
+.buttons-container {
+  display: flex;
+}
 .sorted-container {
   display: flex;
   gap: 2em;
