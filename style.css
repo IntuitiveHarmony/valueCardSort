@@ -131,7 +131,7 @@ table {
 body {
   background-color: rgb(226, 252, 225);
   font-family: verdana;
-  padding: 0.5em;
+  /* padding: 0.5em; */
 }
 h1 {
   font-weight: bold;
@@ -163,13 +163,20 @@ li {
   cursor: pointer;
 }
 .content-container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   max-width: 600px;
 }
-#skip-button {
-  margin-top: 1em;
-  width: 97%;
+footer {
+  display: flex;
+  /* flex-direction: row-reverse; */
+  padding: 0.5em;
+  height: 2em;
+  width: 100%;
+  background-color: rgb(220, 195, 255);
+  margin-top: auto;
+  align-items: center;
 }
 .add-modal-button-box {
   display: flex;
@@ -198,9 +205,10 @@ textarea {
   max-width: 100%;
 }
 .card {
-  max-width: 20em;
+  max-width: 22em;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: rgb(199, 140, 199);
   padding: 1em;
   border-radius: 12px;
@@ -211,7 +219,9 @@ textarea {
   align-self: center;
   margin-bottom: 0.3em;
 }
+
 #card-description {
+  align-self: center;
   margin-bottom: 0.3em;
   height: 3em;
 }
@@ -219,6 +229,19 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   /* width: 75%; */
+}
+.navigation-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2em;
+  display: flex;
+}
+.scroll-button {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+.scroll-button:hover {
+  color: aliceblue;
 }
 .validation-text {
   color: rgb(0, 255, 174);
@@ -242,6 +265,7 @@ textarea {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
+
 .hidden {
   display: none;
 }

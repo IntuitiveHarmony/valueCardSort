@@ -23,6 +23,7 @@ const addButtonElement = $("#add-button");
 const submitButtonElement = $("#submit-button");
 const cancelButtonElement = $("#cancel-button");
 const skipButtonElement = $("#skip-button");
+const previousButtonElement = $("#previous-button");
 // List Stuff
 const notImportantListContainerElement = $(".not-important-card-container");
 const veryImportantListContainerElement = $(".very-important-card-container");
@@ -45,6 +46,7 @@ const validationTextElement = $(".validation-text");
 // ~~~~~~~~~
 // Put shuffled cards and initialize the empty arrays in local storage
 const initLocalStorage = () => {
+  store.clear();
   shuffleCards();
   store.set("veryImportantCards", []);
   store.set("notImportantCards", []);
@@ -60,7 +62,9 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 const handleStartButton = () => {
-  initLocalStorage();
+  if (store.get("?reset")) {
+    initLocalStorage();
+  }
   showCardContainer();
   displayCard();
   startButtonElement.addClass("hidden");
@@ -69,6 +73,7 @@ const handleStartButton = () => {
 };
 const handleResetButton = () => {
   store.clear(); // Delete local storage
+  store.set("reset", true);
   hideCardContainer();
   showSortedContainers();
   startButtonElement.removeClass("hidden");
@@ -267,6 +272,13 @@ const handleSkipButton = () => {
   store.set("shuffledCards", shuffledCards); // Put the cards back into storage
   displayCard();
 };
+const handlePreviousButton = () => {
+  let shuffledCards = store.get("shuffledCards");
+  let previousCard = shuffledCards.pop(); // Take the card from the back of the array
+  shuffledCards.unshift(previousCard); // Move the card to the front of the array
+  store.set("shuffledCards", shuffledCards); // Put the cards back into storage
+  displayCard();
+};
 const updateCardsRemainingDOM = () => {
   cardsCountElement.text(`${store.get("shuffledCards").length}`);
 };
@@ -285,6 +297,7 @@ addButtonElement.click(handleAddButton);
 submitButtonElement.click(handleSubmitButton);
 cancelButtonElement.click(handleCancelButton);
 skipButtonElement.click(handleSkipButton);
+previousButtonElement.click(handlePreviousButton);
 
 // Do this stuff once the DOM is done loading for the first time
 $(() => {
