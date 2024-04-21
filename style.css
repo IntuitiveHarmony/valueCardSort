@@ -253,6 +253,7 @@ textarea {
   display: flex;
   gap: 2em;
   flex-wrap: wrap;
+  margin-bottom: 4em;
 }
 .result-container {
   width: fit-content;
@@ -265,7 +266,8 @@ textarea {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
-
+.reset-modal {
+}
 .hidden {
   display: none;
 }

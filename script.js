@@ -17,11 +17,14 @@ const cardHeaderElement = $("#card-header");
 const cardDescriptionElement = $("#card-description");
 // Buttons
 const allImportantButtonElements = $(".important-button-class");
+const buttonContainerElement = $(".buttons-container");
 const startButtonElement = $("#start-button");
 const resetButtonElement = $("#reset-button");
 const addButtonElement = $("#add-button");
 const submitButtonElement = $("#submit-button");
+const confirmResetButtonElement = $("#confirm-reset-button");
 const cancelButtonElement = $("#cancel-button");
+const cancelSubmitButtonElement = $("#cancel-submit-button");
 const skipButtonElement = $("#skip-button");
 const previousButtonElement = $("#previous-button");
 // List Stuff
@@ -40,7 +43,8 @@ const addCardModalElement = $(".add-card-modal");
 const addCardValueElement = $("#add-new-name");
 const addCardDescriptionElement = $("#add-new-description");
 const validationTextElement = $(".validation-text");
-
+// Reset Modal
+const resetModalElement = $(".reset-modal");
 // ~~~~~~~~~
 // Functions
 // ~~~~~~~~~
@@ -72,13 +76,8 @@ const handleStartButton = () => {
   addButtonElement.removeClass("hidden");
 };
 const handleResetButton = () => {
-  store.clear(); // Delete local storage
-  store.set("reset", true);
-  hideCardContainer();
-  showSortedContainers();
-  startButtonElement.removeClass("hidden");
-  resetButtonElement.addClass("hidden");
-  addButtonElement.addClass("hidden");
+  buttonContainerElement.addClass("hidden");
+  resetModalElement.removeClass("hidden");
 };
 const showCardContainer = () => {
   cardContainerElement.removeClass("hidden");
@@ -245,6 +244,8 @@ const handleCancelButton = () => {
   validationTextElement.addClass("hidden");
   addCardValueElement.val("");
   addCardDescriptionElement.val("");
+  resetModalElement.addClass("hidden");
+  buttonContainerElement.removeClass("hidden");
 };
 const handleSubmitButton = () => {
   // Check to make sure both fields are filled out before submitting card to local storage
@@ -264,6 +265,17 @@ const handleSubmitButton = () => {
     validationTextElement.removeClass("hidden");
     console.log("NO trxt");
   }
+};
+const handleConfirmResetButton = () => {
+  console.log("Confirm reset!");
+  store.clear(); // Delete local storage
+  store.set("reset", true);
+  hideCardContainer();
+  showSortedContainers();
+  startButtonElement.removeClass("hidden");
+  resetButtonElement.addClass("hidden");
+  addButtonElement.addClass("hidden");
+  handleCancelButton();
 };
 const handleSkipButton = () => {
   let shuffledCards = store.get("shuffledCards"); // Get cards from storage
@@ -296,6 +308,8 @@ resetButtonElement.click(handleResetButton);
 addButtonElement.click(handleAddButton);
 submitButtonElement.click(handleSubmitButton);
 cancelButtonElement.click(handleCancelButton);
+confirmResetButtonElement.click(handleConfirmResetButton);
+cancelSubmitButtonElement.click(handleCancelButton);
 skipButtonElement.click(handleSkipButton);
 previousButtonElement.click(handlePreviousButton);
 
