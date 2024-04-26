@@ -133,7 +133,7 @@ const cardsStorageLoop = (array, element, button) => {
   element.empty();
   for (let i = 0; i < array.length; i++) {
     let newLi = $(
-      `<li><span class="listed-value">${array[i].value} </span><i class="fa-solid fa-xmark"></i></li>`
+      `<li data-id="${array[i].id}"><span class="listed-value">${array[i].value} </span><i class="fa-solid fa-xmark"></i></li>`
     );
 
     // Hover Will show the Edit icon
@@ -152,13 +152,17 @@ const cardsStorageLoop = (array, element, button) => {
       }
     );
 
-    // Click Event to edit
+    // Click Event to remove from sorted list
     newLi.click(function () {
       let shuffledCards = store.get("shuffledCards");
-      shuffledCards.unshift(array[i]); // Put card in beginning of deck to be sorted
+      // get id from clicked li element
+      const elementId = this.getAttribute("data-id");
+      // Find card by comparing the index in the array to the id grabbed from the element that was clicked
+      const indexToRemove = array.findIndex((card) => card.id == elementId);
+      let removedCard = array.splice(indexToRemove, 1)[0]; // Remove the card from the original array
+      shuffledCards.unshift(removedCard); // Put card in beginning of deck to be sorted
       store.set("shuffledCards", shuffledCards); // Put deck back
       displayCard(); // cardElement.removeClass("hidden"); // Remove card from list that it is in
-      array.splice(i, 1); // Remove the card from the original array
       console.log("Array name:", button);
       // adjust the local storage based on the edit button pressed
       store.set(button, array); // Update the array in the store
@@ -261,7 +265,6 @@ const handleSubmitButton = () => {
       value: addCardValueElement.val(),
       description: addCardDescriptionElement.val(),
     };
-    console.log(newCard);
     const shuffledCards = store.get("shuffledCards"); // Get the deck from local storage
     shuffledCards.splice(getRandomNumber(0, shuffledCards.length), 0, newCard); // Put new card in random spot
     store.set("shuffledCards", shuffledCards);
@@ -269,11 +272,9 @@ const handleSubmitButton = () => {
     handleCancelButton(); // Reset text Fields
   } else {
     validationTextElement.removeClass("hidden");
-    console.log("NO trxt");
   }
 };
 const handleConfirmResetButton = () => {
-  console.log("Confirm reset!");
   store.clear(); // Delete local storage
   store.set("reset", true);
   hideCardContainer();
