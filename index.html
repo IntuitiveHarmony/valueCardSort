@@ -18,7 +18,10 @@
   <div class="content-container">
     <div class="instructions-container">
       <h1>Values Card Sort</h1>
-      <p id="instructions-content">Sort each of the cards based on how important each of them are to you.</p>
+      <p id="instructions-content">Sort each of the cards based on how important each of the values are to you personally.</p>
+      <p>Click on the corresponding button to categorize each card as "Very Important", "Important", "Somewhat Important", or "Not Important".</p>
+      <p>You can also skip a card or go back to the previous one using the navigation buttons.</p>
+      <p>Once a card is sorted it can be edited by clicking on the corresponding name in the categories section.</p>
     </div>
     <div class="dashboard">
       <div class="buttons-container">
@@ -35,9 +38,6 @@
       </div>
     </div>
     <div class="card-container hidden">
-      <div class="counter-container">
-        <p>Cards Remaining: <span id="cards-count"></span></p>
-      </div>
       <div class="card">
         <h2 id="card-header"></h2>
         <p id="card-description"></p>
@@ -47,7 +47,11 @@
           <button class="important-button-class" id="not-important-button">Not Important</button>
           <button class="important-button-class" id="somewhat-important-button">Somewhat Important</button>
         </div>
-        <div class="navigation-buttons">
+        <hr>
+        <div class="counter-container">
+          <p>Cards Remaining: <span id="cards-count"></span></p>
+        </div>
+        <div class="navigation-buttons-container">
           <!-- <button id="previous-button">Previous</button> -->
           <p class="scroll-button" id="previous-button"> <i class="fa-solid fa-chevron-left"></i> previous </p>
           <p class="scroll-button" id="skip-button">next <i class="fa-solid fa-chevron-right"></i> </p>
@@ -69,21 +73,29 @@
       </div>
     </div>
     <div class="sorted-container">
-      <div class="result-container very-important-card-container hidden">
-        <h3>Very Important:</h3>
-        <ul class="very-important-card-list"></ul>
-      </div>
       <div class="result-container important-card-container hidden">
-        <h3>Important:</h3>
-        <ul class="important-card-list"></ul>
+        <div class="header-container">
+          <h3>Important:</h3>
+        </div>
+        <ol class="important-card-list"></ol>
       </div>
-      <div class="result-container somewhat-important-card-container hidden">
-        <h3>Somewhat Important:</h3>
-        <ul class="somewhat-important-card-list"></ul>
+      <div class="result-container very-important-card-container hidden">
+        <div class="header-container">
+          <h3>Very Important:</h3>
+        </div>
+        <ol class="very-important-card-list"></ol>
       </div>
       <div class="result-container not-important-card-container hidden">
-        <h3>Not Important:</h3>
-        <ul class="not-important-card-list"></ul>
+        <div class="header-container">
+          <h3>Not Important:</h3>
+        </div>
+        <ol class="not-important-card-list"></ol>
+      </div>
+      <div class="result-container somewhat-important-card-container hidden">
+        <div class="header-container">
+          <h3>Somewhat Important:</h3>
+        </div>
+        <ol class="somewhat-important-card-list"></ol>
       </div>
 
     </div>

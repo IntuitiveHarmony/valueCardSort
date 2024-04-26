@@ -132,7 +132,7 @@ const cardsStorageLoop = (array, element, button) => {
   element.empty();
   for (let i = 0; i < array.length; i++) {
     let newLi = $(
-      `<li>${array[i].value} <i class="fa-regular fa-pen-to-square hidden"></i></li>`
+      `<li><span class="listed-value">${array[i].value} </span><i class="fa-solid fa-xmark"></i></li>`
     );
 
     // Hover Will show the Edit icon
@@ -141,13 +141,13 @@ const cardsStorageLoop = (array, element, button) => {
       function () {
         // Show the <i> element when hovered over
         $(this).addClass("highlight-text");
-        $(this).find("i").removeClass("hidden");
+        // $(this).find("i").removeClass("hidden");
       },
       // Function to execute when mouse leaves the newLi element
       function () {
         // Hide the <i> element when mouse leaves
         $(this).removeClass("highlight-text");
-        $(this).find("i").addClass("hidden");
+        // $(this).find("i").addClass("hidden");
       }
     );
 
@@ -164,6 +164,8 @@ const cardsStorageLoop = (array, element, button) => {
       $(this).remove(); // remove from DOM
       // logAllArrays();
       showSortedContainers();
+      // Show card container if all cards have already been sorted
+      cardContainerElement.removeClass("hidden");
     });
 
     element.append(newLi);
