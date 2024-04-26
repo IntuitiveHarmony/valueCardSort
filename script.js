@@ -4,6 +4,7 @@ import { cards } from "./cardData.js";
 // Variables
 // ~~~~~~~~~~
 let cardCount = cards.length; // Initially set to the array length but then incremented later
+let totalCards = cards.length; // Initially set to the array length then incremented when cards are added by user
 let currentIndex = 0;
 
 // ~~~~~~~~~~~~
@@ -252,8 +253,11 @@ const handleCancelButton = () => {
 const handleSubmitButton = () => {
   // Check to make sure both fields are filled out before submitting card to local storage
   if (addCardValueElement.val() && addCardDescriptionElement.val()) {
+    // Increment total cards length
+    totalCards += 1;
     // Get card data from form fields
     const newCard = {
+      id: totalCards,
       value: addCardValueElement.val(),
       description: addCardDescriptionElement.val(),
     };
