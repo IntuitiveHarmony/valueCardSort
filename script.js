@@ -45,7 +45,7 @@ const addCardValueElement = $("#add-new-name");
 const addCardDescriptionElement = $("#add-new-description");
 const validationTextElement = $(".validation-text");
 // Reset Modal
-const resetModalElement = $(".reset-modal");
+const resetModalElement = $(".reset-modal-container");
 // ~~~~~~~~~
 // Functions
 // ~~~~~~~~~
@@ -163,7 +163,6 @@ const cardsStorageLoop = (array, element, button) => {
       shuffledCards.unshift(removedCard); // Put card in beginning of deck to be sorted
       store.set("shuffledCards", shuffledCards); // Put deck back
       displayCard(); // cardElement.removeClass("hidden"); // Remove card from list that it is in
-      console.log("Array name:", button);
       // adjust the local storage based on the edit button pressed
       store.set(button, array); // Update the array in the store
       $(this).remove(); // remove from DOM

@@ -10,6 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- local storage library -->
   <script src="https://unpkg.com/storejs/dist/store.js"></script>
+
   <link rel="stylesheet" href="style.css">
   <title>Values Card Sort</title>
 </head>
@@ -30,32 +31,38 @@
         <button class="hidden" id="add-button">Add New Card</button>
       </div>
     </div>
-    <div class="reset-modal hidden">
-      <p>Are you sure you want to reset? Your progress will be lost!</p>
-      <div class="modal-buttons-container">
-        <button id="cancel-submit-button">Cancel</button>
-        <button id="confirm-reset-button">Ok</button>
+    <div class="reset-modal-container hidden">
+      <div class="reset-modal-box">
+        <p>Are you sure you want to reset? Your progress will be lost!</p>
+        <div class="modal-buttons-container">
+          <button id="cancel-submit-button">Cancel</button>
+          <button id="confirm-reset-button">Ok</button>
+        </div>
       </div>
     </div>
     <div class="card-container hidden">
       <div class="card">
-        <h2 id="card-header"></h2>
-        <p id="card-description"></p>
-        <div class="choice-buttons-container">
-          <button class="important-button-class" id="important-button">Important</button>
-          <button class="important-button-class" id="very-important-button">Very Important</button>
-          <button class="important-button-class" id="not-important-button">Not Important</button>
-          <button class="important-button-class" id="somewhat-important-button">Somewhat Important</button>
+        <div class="header-container">
+          <h2 id="card-header"></h2>
         </div>
-        <hr>
-        <div class="counter-container">
-          <p>Cards Remaining: <span id="cards-count"></span></p>
-        </div>
-        <div class="navigation-buttons-container">
-          <!-- <button id="previous-button">Previous</button> -->
-          <p class="scroll-button" id="previous-button"> <i class="fa-solid fa-chevron-left"></i> previous </p>
-          <p class="scroll-button" id="skip-button">next <i class="fa-solid fa-chevron-right"></i> </p>
-          <!-- <button id="skip-button">Skip for Now</button> -->
+        <div class="card-content">
+          <p id="card-description"></p>
+          <div class="choice-buttons-container">
+            <button class="important-button-class" id="important-button">Important</button>
+            <button class="important-button-class" id="very-important-button">Very Important</button>
+            <button class="important-button-class" id="not-important-button">Not Important</button>
+            <button class="important-button-class" id="somewhat-important-button">Somewhat Important</button>
+          </div>
+          <hr>
+          <div class="counter-container">
+            <p>Cards Remaining: <span id="cards-count"></span></p>
+          </div>
+          <div class="navigation-buttons-container">
+            <!-- <button id="previous-button">Previous</button> -->
+            <p class="scroll-button" id="previous-button"> <i class="fa-solid fa-chevron-left"></i> previous </p>
+            <p class="scroll-button" id="skip-button">next <i class="fa-solid fa-chevron-right"></i> </p>
+            <!-- <button id="skip-button">Skip for Now</button> -->
+          </div>
         </div>
       </div>
       <div class="add-card-modal hidden">
@@ -100,7 +107,8 @@
 
     </div>
     <footer>
-      <p>Site made with 💜 by <a href="https://github.com/IntuitiveHarmony" target="_blank" rel="noopener noreferrer">Intuitive Harmony</a></p>
+      <p>Site made with 🤍 by <a href="https://github.com/IntuitiveHarmony" target="_blank" rel="noopener noreferrer">Intuitive Harmony</a></p>
+      <p><a href="https://github.com/IntuitiveHarmony/valueCardSort" target="_blank" rel="noopener noreferrer">View the source code</a></p>
     </footer>
   </div>
   <script type="module" src="script.js"></script>

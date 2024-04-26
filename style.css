@@ -132,12 +132,13 @@ table {
 /* Variables */
 :root {
   /* Primary Colors */
-  --primary-color-1: #4d7c8a; /* Grayed Jade */
-  --primary-color-2: #9ab87a; /* Olive Green */
+  --primary-color-1: #8b63b6; /* Medium Purple */
+  --primary-color-2: #c17fd9; /* Lavender Pink */
 
   /* Secondary Colors */
-  --secondary-color-1: #f3d2c1; /* Apricot */
-  --secondary-color-2: #e8e8d0; /* Light Khaki */
+  --secondary-color-1: #d4b4f0; /* Baby Blue */
+  --secondary-color-2: #d6e4f0; /* Powder Blue */
+  --warning-color-1: #dd75ff;
 
   /* Neutral Colors */
   --neutral-color-1: #ffffff; /* White */
@@ -145,10 +146,10 @@ table {
   --neutral-color-3: #333333; /* Dark Gray */
 
   /* Semantic Colors */
-  --card-color: var(--primary-color-1); /* Grayed Jade */
-  --container-color: var(--secondary-color-2); /* Light Khaki */
-  --button-color: var(--primary-color-2); /* Olive Green */
-  --button-hover-color: #b0c57f; /* Darker Olive Green */
+  --card-color: var(--secondary-color-1); /* Lavender Pink */
+  --container-color: var(--secondary-color-2); /* Powder Blue */
+  --button-color: var(--primary-color-2); /* Lavender Pink */
+  --button-hover-color: #a97fc1; /* Darker Lavender Pink */
 
   /* Typography Colors */
   --heading-color: var(--neutral-color-3); /* Dark Gray */
@@ -156,7 +157,7 @@ table {
 }
 
 body {
-  background-color: rgb(226, 252, 225);
+  background-color: var(--secondary-color-2);
   font-family: verdana;
   /* padding: 0.5em; */
 }
@@ -171,7 +172,9 @@ hr {
   width: 100%;
 }
 .header-container {
-  background-color: #ff9999;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-color-1);
   color: #ffffff;
   padding: 10px;
   border-top-left-radius: 12px;
@@ -212,14 +215,17 @@ li {
   max-width: 600px;
 }
 footer {
+  color: var(--neutral-color-3);
   display: flex;
-  /* flex-direction: row-reverse; */
+  /* line-height: 7em; */
+  flex-direction: column;
   padding: 0.5em;
+  padding-right: 5em;
   height: 2em;
-  width: 100%;
-  background-color: rgb(220, 195, 255);
+  width: 95vw;
+  background-color: var(--primary-color-2);
   margin-top: auto;
-  align-items: center;
+  align-items: flex-end;
 }
 .listed-value {
   margin-right: 1.5em;
@@ -229,15 +235,17 @@ footer {
 }
 .highlight-text {
   text-decoration: underline;
-  color: rgb(16, 97, 228);
+  color: var(--neutral-color-2);
 }
 .counter-container {
   display: flex;
   margin-bottom: 1em;
   margin-top: 1.5em;
 }
-.card-container {
+.card-container,
+.sorted-container {
   margin-bottom: 2em;
+  padding: 0.7em;
 }
 .add-card-modal {
   max-width: 20em;
@@ -257,9 +265,12 @@ textarea {
   flex-direction: column;
   justify-content: center;
   background-color: var(--card-color);
-  padding: 1em;
+  /* padding: 1em; */
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.card-content {
+  padding: 0.8em;
 }
 #card-header {
   font-size: 1.8em;
@@ -313,11 +324,23 @@ textarea {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
-.reset-modal {
+.reset-modal-container {
+  padding: 0.5em;
+  padding-top: 4em;
+  background-color: rgba(0, 0, 0, 0.578);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.reset-modal-box {
+  width: 90%;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   padding: 1em;
-  background-color: rgb(255, 151, 151);
+  background-color: var(--warning-color-1);
 }
 .hidden {
   display: none;
