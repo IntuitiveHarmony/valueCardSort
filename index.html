@@ -18,17 +18,19 @@
 <body>
   <div class="content-container">
     <div class="instructions-container">
-      <h1>Values Card Sort</h1>
-      <p id="instructions-content">Sort each of the cards based on how important each of the values are to you personally.</p>
+      <h1 class="instructions-header">Values Card Sort</h1>
+      <p>Sort each of the cards based on how important each of the values are to you personally.</p>
       <p>Click on the corresponding button to categorize each card as "Very Important", "Important", "Somewhat Important", or "Not Important".</p>
-      <p>You can also skip a card or go back to the previous one using the navigation buttons.</p>
-      <p>Once a card is sorted it can be edited by clicking on the corresponding name in the categories section.</p>
+      <p>Skip a card or go back to the previous one using the "previous" and "next" navigation buttons.</p>
+      <p>Add a custom card to the deck by clicking the <i class="fa-solid fa-circle-plus"></i> button.</p>
+      <p>Once a card is sorted it can be edited by clicking on the corresponding <i class="fa-regular fa-square-minus"></i> in the sorted categories section.</p>
+      <p>To reset, click the <i class="fa-solid fa-circle-xmark"></i> button. This will also erase any custom card information entered into the deck.</p>
     </div>
     <div class="dashboard">
       <div class="buttons-container">
         <button id="start-button">Start</button>
-        <button id="reset-button" class="hidden">Reset</button>
-        <button class="hidden" id="add-button">Add New Card</button>
+        <!-- <button id="reset-button" class="hidden">Reset</button> -->
+        <!-- <button class="hidden" id="add-button">Add New Card</button> -->
       </div>
     </div>
     <div class="reset-modal-container hidden">
@@ -41,9 +43,12 @@
       </div>
     </div>
     <div class="card-container hidden">
-      <div class="card">
+      <div class="display-card card">
         <div class="header-container">
+          <i class="card-header-button fa-solid fa-circle-xmark" id="reset-button"></i>
           <h2 id="card-header"></h2>
+          <i class="card-header-button fa-solid fa-circle-plus" id="add-button"></i>
+
         </div>
         <div class="card-content">
           <p id="card-description"></p>
@@ -65,8 +70,10 @@
           </div>
         </div>
       </div>
-      <div class="add-card-modal hidden">
-        <h2>Add New Card</h2>
+      <div class="add-card-modal card hidden">
+        <div class="header-container">
+          <h2>Add New Card</h2>
+        </div>
         <p>Fill out the form and submit your own personal value to the deck of cards.</p>
         <label for="add-new-name">Value:</label>
         <input type="text" id="add-new-name">

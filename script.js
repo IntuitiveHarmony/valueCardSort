@@ -3,15 +3,14 @@ import { cards } from "./cardData.js";
 // ~~~~~~~~~~
 // Variables
 // ~~~~~~~~~~
-let cardCount = cards.length; // Initially set to the array length but then incremented later
-let totalCards = cards.length; // Initially set to the array length then incremented when cards are added by user
+let totalCards = cards.length; // Initially set to the array length then incremented when new cards are added by user
 let currentIndex = 0;
 
 // ~~~~~~~~~~~~
 // DOM Elements
 // ~~~~~~~~~~~~
 // Card Stuff
-const cardElement = $(".card");
+const displayCardElement = $(".display-card");
 const cardsCountElement = $("#cards-count");
 const cardContainerElement = $(".card-container");
 const cardHeaderElement = $("#card-header");
@@ -133,7 +132,7 @@ const cardsStorageLoop = (array, element, button) => {
   element.empty();
   for (let i = 0; i < array.length; i++) {
     let newLi = $(
-      `<li data-id="${array[i].id}"><span class="listed-value">${array[i].value} </span><i class="fa-solid fa-xmark"></i></li>`
+      `<li data-id="${array[i].id}"><span class="listed-value">${array[i].value} </span><i class="fa-regular fa-square-minus"></i></li>`
     );
 
     // Hover Will show the Edit icon
@@ -162,7 +161,7 @@ const cardsStorageLoop = (array, element, button) => {
       let removedCard = array.splice(indexToRemove, 1)[0]; // Remove the card from the original array
       shuffledCards.unshift(removedCard); // Put card in beginning of deck to be sorted
       store.set("shuffledCards", shuffledCards); // Put deck back
-      displayCard(); // cardElement.removeClass("hidden"); // Remove card from list that it is in
+      displayCard(); // displayCardElement.removeClass("hidden"); // Remove card from list that it is in
       // adjust the local storage based on the edit button pressed
       store.set(button, array); // Update the array in the store
       $(this).remove(); // remove from DOM
@@ -241,12 +240,12 @@ function handleEveryImportantButton() {
 }
 const handleAddButton = () => {
   addCardModalElement.removeClass("hidden");
-  cardElement.addClass("hidden");
+  displayCardElement.addClass("hidden");
 };
 const handleCancelButton = () => {
   // reset all the add card modal settings
   addCardModalElement.addClass("hidden");
-  cardElement.removeClass("hidden");
+  displayCardElement.removeClass("hidden");
   validationTextElement.addClass("hidden");
   addCardValueElement.val("");
   addCardDescriptionElement.val("");
