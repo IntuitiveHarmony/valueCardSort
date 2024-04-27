@@ -9,6 +9,12 @@ let currentIndex = 0;
 // ~~~~~~~~~~~~
 // DOM Elements
 // ~~~~~~~~~~~~
+// Dashboard
+const dashboardElement = $(".dashboard");
+const instructionContentContainer = $(".instructions-content");
+const instructionToggleContainer = $(".instruction-toggle-container");
+const showInstructionsButtonElement = $("#show-instructions-button");
+const hideInstructionsButtonElement = $("#hide-instructions-button");
 // Card Stuff
 const displayCardElement = $(".display-card");
 const cardsCountElement = $("#cards-count");
@@ -71,9 +77,10 @@ const handleStartButton = () => {
   }
   showCardContainer();
   displayCard();
-  startButtonElement.addClass("hidden");
+  dashboardElement.addClass("hidden");
   resetButtonElement.removeClass("hidden");
   addButtonElement.removeClass("hidden");
+  instructionToggleContainer.removeClass("hidden");
 };
 const handleResetButton = () => {
   buttonContainerElement.addClass("hidden");
@@ -277,9 +284,11 @@ const handleConfirmResetButton = () => {
   store.set("reset", true);
   hideCardContainer();
   showSortedContainers();
-  startButtonElement.removeClass("hidden");
+  dashboardElement.removeClass("hidden");
   resetButtonElement.addClass("hidden");
   addButtonElement.addClass("hidden");
+  instructionContentContainer.removeClass("hidden");
+  instructionToggleContainer.addClass("hidden");
   handleCancelButton();
 };
 const handleSkipButton = () => {
@@ -299,6 +308,20 @@ const handlePreviousButton = () => {
 const updateCardsRemainingDOM = () => {
   cardsCountElement.text(`${store.get("shuffledCards").length}`);
 };
+const handleShowInstructions = () => {
+  // container
+  instructionContentContainer.removeClass("hidden");
+  // buttons
+  hideInstructionsButtonElement.removeClass("hidden");
+  showInstructionsButtonElement.addClass("hidden");
+};
+const handleHideInstructions = () => {
+  // container
+  instructionContentContainer.addClass("hidden");
+  // buttons
+  showInstructionsButtonElement.removeClass("hidden");
+  hideInstructionsButtonElement.addClass("hidden");
+};
 
 // ~~~~~~~~~~~~~~~~~~~
 // Button Click Events
@@ -317,6 +340,9 @@ confirmResetButtonElement.click(handleConfirmResetButton);
 cancelSubmitButtonElement.click(handleCancelButton);
 skipButtonElement.click(handleSkipButton);
 previousButtonElement.click(handlePreviousButton);
+// Instructions Toggles
+showInstructionsButtonElement.click(handleShowInstructions);
+hideInstructionsButtonElement.click(handleHideInstructions);
 
 // Do this stuff once the DOM is done loading for the first time
 $(() => {

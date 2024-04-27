@@ -18,20 +18,47 @@
 <body>
   <div class="content-container">
     <div class="instructions-container">
-      <h1 class="instructions-header">Values Card Sort</h1>
-      <p>Sort each of the cards based on how important each of the values are to you personally.</p>
-      <p>Click on the corresponding button to categorize each card as "Very Important", "Important", "Somewhat Important", or "Not Important".</p>
-      <p>Skip a card or go back to the previous one using the "previous" and "next" navigation buttons.</p>
-      <p>Add a custom card to the deck by clicking the <i class="fa-solid fa-circle-plus"></i> button.</p>
-      <p>Once a card is sorted it can be edited by clicking on the corresponding <i class="fa-regular fa-square-minus"></i> in the sorted categories section.</p>
-      <p>To reset, click the <i class="fa-solid fa-circle-xmark"></i> button. This will also erase any custom card information entered into the deck.</p>
+      <div class="instructions-header-container">
+        <h1 class="instructions-header">Values Card Sort</h1>
+      </div>
+      <div class="instructions-content">
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Sort the following cards based on how important each of the values described are to you personally.</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Click on the corresponding button to categorize the card as "Very Important", "Important", "Somewhat Important", or "Not Important".</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Skip a card or go back to the previous one using the "next" and "previous" navigation buttons.</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Add your own value cards to the deck by clicking the <i class="fa-solid fa-circle-plus"></i> button.</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Once a card is sorted it can be edited by clicking on the corresponding <i class="fa-regular fa-square-circle"></i> in the sorted categories section.</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>To reset, click the <i class="fa-solid fa-circle-xmark"></i> button. This will also erase any custom card information entered into the deck.</p>
+        </div>
+      </div>
+      <div class="instruction-toggle-container hidden">
+        <div class="instrctions-toggle-button hidden" id="show-instructions-button">
+          <p>Show Instructions</p><i class="fa-solid fa-turn-down instrctions-toggle-icon"></i>
+        </div>
+        <div class="instrctions-toggle-button" id="hide-instructions-button">
+          <p>Hide Instructions</p><i class="fa-solid fa-turn-up instrctions-toggle-icon"></i>
+        </div>
+      </div>
     </div>
     <div class="dashboard">
-      <div class="buttons-container">
-        <button id="start-button">Start</button>
-        <!-- <button id="reset-button" class="hidden">Reset</button> -->
-        <!-- <button class="hidden" id="add-button">Add New Card</button> -->
-      </div>
+      <i class="fa-solid fa-circle-play" id="start-button"></i>
+      <p>Sort the Cards</p>
     </div>
     <div class="reset-modal-container hidden">
       <div class="reset-modal-box">

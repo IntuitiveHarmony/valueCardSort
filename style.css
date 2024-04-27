@@ -139,10 +139,11 @@ table {
   --secondary-color-1: #d4b4f0; /* Baby Blue */
   --secondary-color-2: #cae6ff; /* Powder Blue */
   --warning-color-1: #dd75ff;
+  --highlight-color: #09a5ff;
 
   /* Neutral Colors */
   --neutral-color-1: #ffffff; /* White */
-  --neutral-color-2: #eeeeee; /* Ghost White */
+  --neutral-color-2: #ebebeb; /* Ghost White */
   --neutral-color-3: #333333; /* Dark Gray */
 
   /* Semantic Colors */
@@ -174,11 +175,53 @@ hr {
 p {
   margin-bottom: 0.5em;
 }
+.instructions-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--primary-color-2);
+}
+.instructions-content {
+  background-color: var(--secondary-color-2);
+  padding: 0.5em;
+  padding-top: 1.1em;
+  padding-right: 1.1em;
+  padding-bottom: 1.1em;
+}
+.instructions-header-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--primary-color-1);
+  font-size: 1.8em;
+  padding: 0.3em;
+  color: var(--neutral-color-2);
+}
+.instruction-item {
+  display: flex;
+}
+.bullet {
+  margin-right: 0.5em;
+  align-self: center;
+  font-size: 0.7em;
+}
+.instruction-toggle-container {
+  padding: 0.3em;
+  /* color: var(--neutral-color-2); */
+  background-color: var(--secondary-color-1);
+  font-weight: bold;
+}
+.instrctions-toggle-button {
+  width: fit-content;
+  display: flex;
+  cursor: pointer;
+}
+.instrctions-toggle-icon {
+  margin-left: 0.2em;
+}
 .header-container {
   display: flex;
   justify-content: space-between;
   background-color: var(--primary-color-1);
-  color: #ffffff;
+  color: var(--neutral-color-2);
   padding: 10px;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -186,6 +229,25 @@ p {
 .header-container h3 {
   margin: 0;
   font-size: 1.2rem;
+}
+.dashboard {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  font-size: 1.5em;
+  width: fit-content;
+  height: fit-content;
+}
+.dashboard:hover {
+  color: var(--highlight-color);
+}
+.buttons-container {
+  justify-content: center;
+  font-size: 3em;
+}
+#start-button {
+  font-size: 3.5em;
 }
 button {
   cursor: pointer;
@@ -229,7 +291,7 @@ footer {
   flex-direction: column;
   padding: 0.5em;
   padding-right: 5em;
-  height: 2em;
+  height: fit-content;
   width: 95vw;
   background-color: var(--secondary-color-1);
   margin-top: auto;
@@ -307,7 +369,7 @@ textarea {
   font-size: 1.2em;
 }
 .scroll-button:hover {
-  color: aliceblue;
+  color: var(--highlight-color);
 }
 .validation-text {
   color: rgb(0, 255, 174);
