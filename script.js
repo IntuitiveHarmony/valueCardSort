@@ -282,6 +282,10 @@ const handleSubmitButton = () => {
       description: addCardDescriptionElement.val(),
     };
     const shuffledCards = store.get("shuffledCards"); // Get the deck from local storage
+    // Show card content container if the card sort has been completed
+    if (shuffledCards == 0) {
+      cardContentElement.removeClass("hidden");
+    }
     shuffledCards.splice(getRandomNumber(0, shuffledCards.length), 0, newCard); // Put new card in random spot
     store.set("shuffledCards", shuffledCards);
     updateCardsRemainingDOM();

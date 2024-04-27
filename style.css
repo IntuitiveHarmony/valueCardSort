@@ -321,15 +321,9 @@ footer {
   margin-bottom: 2em;
   padding: 0.7em;
 }
-/* .add-card-modal {
-  max-width: 20em;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(199, 140, 199);
-  padding: 1em;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-} */
+.add-card-modal-content {
+  padding: 0.5em;
+}
 textarea {
   max-width: 100%;
 }
