@@ -81,6 +81,7 @@ const handleStartButton = () => {
   resetButtonElement.removeClass("hidden");
   addButtonElement.removeClass("hidden");
   instructionToggleContainer.removeClass("hidden");
+  handleHideInstructions();
 };
 const handleResetButton = () => {
   buttonContainerElement.addClass("hidden");
