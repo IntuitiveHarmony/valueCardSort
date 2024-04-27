@@ -21,6 +21,7 @@ const cardsCountElement = $("#cards-count");
 const cardContainerElement = $(".card-container");
 const cardHeaderElement = $("#card-header");
 const cardDescriptionElement = $("#card-description");
+const cardContentElement = $(".card-content");
 // Buttons
 const allImportantButtonElements = $(".important-button-class");
 const buttonContainerElement = $(".buttons-container");
@@ -82,6 +83,7 @@ const handleStartButton = () => {
   addButtonElement.removeClass("hidden");
   instructionToggleContainer.removeClass("hidden");
   handleHideInstructions();
+  showCardContents();
 };
 const handleResetButton = () => {
   buttonContainerElement.addClass("hidden");
@@ -93,13 +95,20 @@ const showCardContainer = () => {
 const hideCardContainer = () => {
   cardContainerElement.addClass("hidden");
 };
+const hideCardContents = () => {
+  cardContentElement.addClass("hidden");
+  cardHeaderElement.text("All Cards Sorted");
+};
+const showCardContents = () => {
+  cardContentElement.removeClass("hidden");
+};
 const displayCard = () => {
   let shuffledCards = store.get("shuffledCards");
   if (shuffledCards.length > 0) {
     cardHeaderElement.text(shuffledCards[currentIndex].value);
     cardDescriptionElement.text(shuffledCards[currentIndex].description);
   } else {
-    hideCardContainer();
+    hideCardContents();
   }
   updateCardsRemainingDOM();
 };
@@ -177,6 +186,7 @@ const cardsStorageLoop = (array, element, button) => {
       showSortedContainers();
       // Show card container if all cards have already been sorted
       cardContainerElement.removeClass("hidden");
+      cardContentElement.removeClass("hidden");
     });
 
     element.append(newLi);
@@ -276,6 +286,7 @@ const handleSubmitButton = () => {
     store.set("shuffledCards", shuffledCards);
     updateCardsRemainingDOM();
     handleCancelButton(); // Reset text Fields
+    displayCard();
   } else {
     validationTextElement.removeClass("hidden");
   }
