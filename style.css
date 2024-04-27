@@ -158,8 +158,12 @@ table {
 }
 
 body {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
   background-color: var(--neutral-color-2);
   font-family: verdana;
+  justify-content: space-between;
   /* padding: 0.5em; */
 }
 h1 {
@@ -180,6 +184,7 @@ p {
   flex-direction: column;
   border-bottom: 2px solid var(--primary-color-2);
   margin-bottom: 1.5em;
+  width: 100%;
 }
 .instructions-content {
   background-color: var(--secondary-color-2);
@@ -283,9 +288,10 @@ li {
   cursor: pointer;
 }
 .content-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 600px;
 }
 footer {
@@ -294,12 +300,12 @@ footer {
   /* line-height: 7em; */
   flex-direction: column;
   padding: 0.5em;
-  padding-right: 5em;
+  padding-right: 1em;
   height: fit-content;
-  width: 95vw;
   background-color: var(--secondary-color-1);
   margin-top: auto;
   align-items: flex-end;
+  max-width: 600px;
 }
 .listed-value {
   margin-right: 1.5em;
@@ -376,10 +382,14 @@ textarea {
   display: flex;
 }
 .sorted-container {
+  width: 100%;
   display: flex;
+  flex-direction: row;
   gap: 2em;
   flex-wrap: wrap;
   margin-bottom: 4em;
+  justify-content: center;
+  /* align-items: center; */
 }
 .result-container {
   width: fit-content;
