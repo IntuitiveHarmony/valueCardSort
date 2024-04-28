@@ -338,7 +338,16 @@ footer {
 .add-card-modal-content {
   padding: 0.5em;
 }
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+.input-container input {
+  width: 210px;
+}
 textarea {
+  width: 210px;
   max-width: 100%;
 }
 .card {
