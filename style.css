@@ -136,10 +136,10 @@ table {
   --primary-color-2: #c17fd9; /* Lavender Pink */
 
   /* Secondary Colors */
-  --secondary-color-1: #d4b4f0; /* Baby Blue */
+  --secondary-color-1: #e9d0fe; /* Baby Blue */
   --secondary-color-2: #cae6ff; /* Powder Blue */
   --warning-color-1: #dd75ff;
-  --highlight-color: #09a5ff;
+  --highlight-color: #ff00f2;
 
   /* Neutral Colors */
   --neutral-color-1: #ffffff; /* White */
@@ -158,6 +158,7 @@ table {
 }
 
 body {
+  height: 100%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
@@ -218,12 +219,15 @@ p {
   font-weight: bold;
   padding-right: 2em;
 }
-.instrctions-toggle-button {
+.instructions-toggle-button {
   width: fit-content;
   display: flex;
   cursor: pointer;
 }
-.instrctions-toggle-icon {
+.instructions-toggle-button:hover {
+  color: var(--highlight-color);
+}
+.instructions-toggle-icon {
   margin-left: 0.2em;
 }
 .header-container {
@@ -243,7 +247,7 @@ p {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-self: center;
+  align-items: center;
   font-size: 1.5em;
   width: fit-content;
   height: fit-content;
@@ -256,7 +260,8 @@ p {
   font-size: 3em;
 }
 #start-button {
-  font-size: 3.5em;
+  font-size: 3em;
+  padding: 0.2em;
 }
 button {
   cursor: pointer;
@@ -274,6 +279,9 @@ button:hover {
   cursor: pointer;
   color: var(--secondary-color-2);
   font-size: 1.3em;
+}
+.card-header-button:hover {
+  color: var(--highlight-color);
 }
 ol {
   list-style-type: decimal !important;
@@ -315,7 +323,7 @@ footer {
 }
 .highlight-text {
   text-decoration: underline;
-  color: var(--neutral-color-2);
+  color: var(--highlight-color);
 }
 .counter-container {
   display: flex;
@@ -376,7 +384,7 @@ textarea {
   color: var(--highlight-color);
 }
 .validation-text {
-  color: rgb(0, 255, 174);
+  color: var(--highlight-color);
 }
 .buttons-container {
   display: flex;
