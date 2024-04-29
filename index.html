@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- icon library -->
   <script src="https://kit.fontawesome.com/0920e202c7.js" crossorigin="anonymous"></script>
@@ -41,6 +42,10 @@
         <div class="instruction-item">
           <i class="fa-regular fa-circle bullet"></i>
           <p>Once a card is sorted it can be edited by clicking on the corresponding name or <i class="fa-regular fa-square-minus"></i> in the sorted categories section.</p>
+        </div>
+        <div class="instruction-item">
+          <i class="fa-regular fa-circle bullet"></i>
+          <p>Once started, your progress is automatically saved and you can return to this page at anytime.</p>
         </div>
         <div class="instruction-item">
           <i class="fa-regular fa-circle bullet"></i>
@@ -88,6 +93,7 @@
           <hr>
           <div class="counter-container">
             <p>Cards Remaining: <span id="cards-count"></span></p>
+            <div id="pdf-button">Download Results <i class="fa-solid fa-file-arrow-down"></i></div>
           </div>
           <div class="navigation-buttons-container">
             <!-- <button id="previous-button">Previous</button> -->
@@ -119,30 +125,36 @@
         </div>
       </div>
     </div>
-    <div class="sorted-container">
-      <div class="result-container important-card-container hidden">
-        <div class="header-container">
-          <h3>Important:</h3>
-        </div>
-        <ol class="important-card-list"></ol>
+    <div class="results-container hidden">
+      <div class="header-container">
+        <h3>Sorted Cards</h3>
       </div>
-      <div class="result-container very-important-card-container hidden">
-        <div class="header-container">
-          <h3>Very Important:</h3>
+
+      <div class="sorted-container">
+        <div class="result-list-container important-card-container hidden">
+          <div class="header-container">
+            <h3>Important:</h3>
+          </div>
+          <ol class="important-card-list"></ol>
         </div>
-        <ol class="very-important-card-list"></ol>
-      </div>
-      <div class="result-container not-important-card-container hidden">
-        <div class="header-container">
-          <h3>Not Important:</h3>
+        <div class="result-list-container very-important-card-container hidden">
+          <div class="header-container">
+            <h3>Very Important:</h3>
+          </div>
+          <ol class="very-important-card-list"></ol>
         </div>
-        <ol class="not-important-card-list"></ol>
-      </div>
-      <div class="result-container somewhat-important-card-container hidden">
-        <div class="header-container">
-          <h3>Somewhat Important:</h3>
+        <div class="result-list-container not-important-card-container hidden">
+          <div class="header-container">
+            <h3>Not Important:</h3>
+          </div>
+          <ol class="not-important-card-list"></ol>
         </div>
-        <ol class="somewhat-important-card-list"></ol>
+        <div class="result-list-container somewhat-important-card-container hidden">
+          <div class="header-container">
+            <h3>Somewhat Important:</h3>
+          </div>
+          <ol class="somewhat-important-card-list"></ol>
+        </div>
       </div>
 
     </div>

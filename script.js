@@ -22,6 +22,7 @@ const cardContainerElement = $(".card-container");
 const cardHeaderElement = $("#card-header");
 const cardDescriptionElement = $("#card-description");
 const cardContentElement = $(".card-content");
+const resultsContainerElement = $(".results-container");
 // Buttons
 const allImportantButtonElements = $(".important-button-class");
 const buttonContainerElement = $(".buttons-container");
@@ -114,35 +115,59 @@ const displayCard = () => {
 };
 
 const showSortedContainers = () => {
+  // Flags for the main container
+  let importantPopulated = false;
+  let veryImportantPopulated = false;
+  let notImportantPopulated = false;
+  let somewhatImportantPopulated = false;
   // Make sure each array exists in the local storage and is greater than 0 to show or hide List in DOM
   if (
     store.get("?veryImportantCards") &&
     store.get("veryImportantCards").length > 0
   ) {
+    veryImportantPopulated = true;
     veryImportantListContainerElement.removeClass("hidden");
   } else {
+    veryImportantPopulated = false;
     veryImportantListContainerElement.addClass("hidden");
   }
   if (
     store.get("?notImportantCards") &&
     store.get("notImportantCards").length > 0
   ) {
+    notImportantPopulated = true;
     notImportantListContainerElement.removeClass("hidden");
   } else {
+    notImportantPopulated = false;
     notImportantListContainerElement.addClass("hidden");
   }
   if (
     store.get("?somewhatImportantCards") &&
     store.get("somewhatImportantCards").length > 0
   ) {
+    somewhatImportantPopulated = true;
     somewhatImportantListContainerElement.removeClass("hidden");
   } else {
+    somewhatImportantPopulated = false;
     somewhatImportantListContainerElement.addClass("hidden");
   }
   if (store.get("?importantCards") && store.get("importantCards").length > 0) {
+    importantPopulated = true;
     importantListContainerElement.removeClass("hidden");
   } else {
+    importantPopulated = false;
     importantListContainerElement.addClass("hidden");
+  }
+  // Show Results container based on if there are results in the above containers
+  if (
+    notImportantPopulated ||
+    veryImportantPopulated ||
+    somewhatImportantPopulated ||
+    importantPopulated
+  ) {
+    resultsContainerElement.removeClass("hidden");
+  } else {
+    resultsContainerElement.addClass("hidden");
   }
 };
 const cardsStorageLoop = (array, element, button) => {
